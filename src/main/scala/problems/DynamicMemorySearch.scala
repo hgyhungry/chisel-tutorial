@@ -31,12 +31,14 @@ class DynamicMemorySearch(val n: Int, val w: Int) extends Module {
   // Implement below ----------
 
   val memVal = 0.U
+  memVal := in_mem(index)
 
   // Implement above ----------
   val done   = !io.en && ((memVal === io.data) || (index === (n-1).asUInt))
 
   // Implement below ----------
-
+  val in_mem = Vec(Seq.fill(n){RegInit(0.U(w.W))})
+  when (io.isWr) { in_mem(io.wrAddr) := io.data }
 
   // Implement above ----------
 

@@ -16,7 +16,9 @@ class Accumulator extends Module {
 
   // Implement below ----------
 
-  io.out := 0.U
+  val counter = RegInit(0.U(8.W))
+  when (io.in.asBool()) { counter := counter + 1.U }
+  io.out := counter
 
   // Implement above ----------
 }
