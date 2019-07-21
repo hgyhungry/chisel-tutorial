@@ -17,7 +17,10 @@ class LFSR16 extends Module {
 
   // Implement below ----------
   val shiftReg = RegInit(1.U(16.W))
-  when (io.inc) { shiftReg := (shiftReg >> 1) | (((shiftReg(0)^shiftReg(2)^shiftReg(3)^shiftReg(5)).asUInt)<<16) }
+  when (io.inc) { 
+    val nextval = Cat(shiftReg(0)^shiftReg(2)^shiftReg(3)^shiftReg(5), shiftReg(15,1))
+    shiftReg := nextval
+  }
   io.out := shiftReg
 
   // Implement above ----------
