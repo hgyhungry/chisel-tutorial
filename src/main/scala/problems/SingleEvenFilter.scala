@@ -35,7 +35,7 @@ object SingleFilter {
 object EvenFilter {
   def apply[T <: UInt](dtype: T) = 
     // Change function argument of Predicate filter below ----------
-    Module(new PredicateFilter(dtype, (x: T) => !(x(0).toBool)))
+    Module(new PredicateFilter(dtype, (x: T) => (x(0).toBool)))
     // Change function argument of Predicate filter above ----------
 }
 
