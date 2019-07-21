@@ -29,7 +29,7 @@ class DynamicMemorySearch(val n: Int, val w: Int) extends Module {
   })
   val index  = RegInit(0.U(log2Ceil(n).W))
   // Implement below ----------
-  val in_mem = Vec(Seq.fill(n){Reg(UInt(w.W))})
+  val in_mem = Mem(n, UInt(w.W))
   val memVal = in_mem(index)
 
   // Implement above ----------
